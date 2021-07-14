@@ -1,4 +1,22 @@
 var fakeSlowNetwork;
+
+(function() {
+    var lsKey = 'fake-slow-network';
+    var networkFakeDiv = document.querySelector('.network-fake');
+    var checkbox = networkFakeDiv.querySelector('input');
+
+    fakeSlowNetwork = Number(localStorage.getItem(lsKey)) || 0;
+
+    networkFakeDiv.style.display = 'block';
+    checkbox.checked = fakeSlowNetwork;
+
+    checkbox.addEventListener('change', function(){
+        localStorage.setItem(lsKey, Number(checkbox.checked));
+        // eslint-disable-next-line no-restricted-globals
+        location.reload();
+    });
+})();
+
 var storyDiv = document.querySelector('.story');
 function addHtmlToPage(content) {
     var div = document.createElement('div');

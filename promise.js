@@ -389,3 +389,68 @@ const wait__ = ms => new Promise(resolve => setTimeout(resolve, ms));
 wait__().then(() => console.log(4));
 Promise.resolve().then(() => console.log(2)).then(() => console.log(3));
 console.log(1);
+
+Promise.resolve("Success").then(function(value){
+    console.log(value);
+}, function(value){
+
+})
+
+var p = Promise.resolve([1,2,3]);
+p.then(function(v){
+    console.log(v[0]);
+});
+
+var original = Promise.resolve(33);
+var cast = Promise.resolve(original);
+cast.then(function(value){
+    console.log('value: '+value);
+});
+console.log('original === cast ? '+(original === cast));
+
+var p1 = Promise.resolve({
+    then: function(onFulfill, onReject){
+        onFulfill("fulfilled!");
+    }
+});
+console.log(p1 instanceof Promise)
+
+p1.then(function(v){
+    console.log(v);
+}, function(e){
+
+});
+
+var thenable = {then: function(resolve){
+    throw new TypeError("Throwing");
+    resolve("Resolving");
+}};
+
+var p2 = Promise.resolve(thenable);
+p2.then(function(v){
+    
+}, function(e){
+    console.log(e);
+});
+
+var thenable = {then: function(resolve){
+    resolve("Resolving");
+    throw new TypeError("Throwing");
+}};
+
+var p3 = Promise.resolve(thenable);
+p3.then(function(v){
+    console.log(v);
+}, function(e){
+
+});
+
+let myFirstPromise = new Promise((resolve, reject) => {
+    setTimeout(function(){
+        resolve("Success!");
+    }, 240);
+});
+
+myFirstPromise.then((successMessage)=>{
+    console.log("Yay!"+successMessage);
+});
