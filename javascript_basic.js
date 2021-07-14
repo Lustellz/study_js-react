@@ -24,15 +24,15 @@ function displayDone() {
     console.log('3 seconds has elapsed');
 }
 
-setTimeout(3000, displayDone);
+setTimeout(displayDone, 3000);
 
-setTimeout(3000, function () {
+setTimeout(function () {
     console.log('3 seconds has elapsed');
-})
+}, 3000)
 
-setTimeout(3000, () => {
+setTimeout(() => {
     console.log('3 seconds has elapsed');
-})
+}, 3000)
 
 let empty = () => { };
 
@@ -246,7 +246,7 @@ function returnInt(element){
 ['1', '2', '3'].map(str => parseInt(str))
 ['1', '2', '3'].map(Number)
 ['1.1', '2.2e2', '3e300'].map(Number)
-['1.1', '2.2e2', '3e300'].amp(str=>parseInt(str))
+['1.1', '2.2e2', '3e300'].map(str=>parseInt(str))
 
 let xs = ['10', '10', '10']
 xs = xs.map(parseInt)
