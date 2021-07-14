@@ -8,7 +8,7 @@ var fakeSlowNetwork;
     fakeSlowNetwork = Number(localStorage.getItem(lsKey)) || 0;
 
     networkFakeDiv.style.display = 'block';
-    checkbox.checked = fakeSlowNetwork;
+    checkbox.checked = !!fakeSlowNetwork;
 
     checkbox.addEventListener('change', function(){
         localStorage.setItem(lsKey, Number(checkbox.checked));
