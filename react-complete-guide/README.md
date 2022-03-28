@@ -43,3 +43,8 @@ React allows you to create re-usable and reactive components consisting of HTML 
 - Updating the UI & Working with "State"
 - A Closer Look At Components & State
 
+## 60. Lifting State Up
+
+![image-20220326194917966](C:\Users\luste\AppData\Roaming\Typora\typora-user-images\image-20220326194917966.png)
+
+![image-20220326195049841](C:\Users\luste\AppData\Roaming\Typora\typora-user-images\image-20220326195049841.png)
