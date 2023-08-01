@@ -1,37 +1,67 @@
-import { useEffect, useRef, useState } from "react";
+import {
+    //  useEffect,
+    useState,
+} from "react";
 
-const SimpleInput = (props) => {
-    const nameInputRef = useRef();
+const SimpleInput = () => {
     const [enteredName, setEnteredName] = useState("");
-    const [isEnteredNameValid, setIsEnteredNameValid] = useState(false);
     const [enteredNameTouched, setEnteredNameTouched] = useState(false);
+    // const [isFormValid, setIsFormValid] = useState(false);
 
-    useEffect(() => {
-        if (isEnteredNameValid) console.log("Name Input is valid!");
-    }, [isEnteredNameValid]);
+    const [enteredEmail, setEnteredEmail] = useState("");
+    const [isEnteredEmailTouched, setIsEnteredEamilTouched] = useState(false);
+
+    const isEnteredNameValid = enteredName.trim() !== "";
+    const isNameInputInvalid = !isEnteredNameValid && enteredNameTouched;
+
+    const isEnteredEmailValid = enteredEmail.includes("@");
+    const isEnteredEmailInvalid = !isEnteredEmailValid && isEnteredEmailTouched;
+
+    let isFormValid = false;
+
+    if (isEnteredNameValid && isEnteredEmailValid) isFormValid = true;
+
+    // useEffect(() => {
+    //     if (isEnteredNameValid) setIsFormValid(true);
+    //     else setIsFormValid(false);
+    // }, [isEnteredNameValid]);
 
     const nameInputChangeHandler = (event) => {
         setEnteredName(event.target.value);
     };
 
+    const emailInputChangeHandler = (event) => {
+        setEnteredEmail(event.target.value);
+    };
+
+    const nameInputBlurHandler = () => {
+        setEnteredNameTouched(true);
+    };
+
+    const emailInputBlurHandler = (event) => {
+        setIsEnteredEamilTouched(true);
+    };
+
     const formSubmissionHandler = (event) => {
         event.preventDefault();
         setEnteredNameTouched(true);
-        if (enteredName.trim() == "") {
-            setIsEnteredNameValid(false);
-            return;
+        if (enteredName.trim() === "") {
+            if (!isEnteredNameValid) return;
         }
-        setIsEnteredNameValid(true);
         console.log(enteredName);
-        const enteredValue = nameInputRef.current.value;
-        console.log(enteredValue);
         // nameInputRef.current.value = '' => NOT IDEAL, DON'T MANIPULATE THE DOM (react should deal with this, so this is not ideal.)
         setEnteredName("");
+        setEnteredNameTouched(false);
+
+        setEnteredEmail("");
+        setIsEnteredEamilTouched(false);
     };
 
-    const isNameInputInvalid = !isEnteredNameValid && enteredNameTouched;
-
     const nameInputClasses = isNameInputInvalid
+        ? "form-control invalid"
+        : "form-control";
+
+    const emailInputClasses = isEnteredEmailValid
         ? "form-control invalid"
         : "form-control";
 
@@ -40,18 +70,31 @@ const SimpleInput = (props) => {
             <div className={nameInputClasses}>
                 <label htmlFor="name">Your Name</label>
                 <input
-                    ref={nameInputRef}
                     type="text"
                     id="name"
                     onChange={nameInputChangeHandler}
+                    onBlur={nameInputBlurHandler}
                     value={enteredName}
                 />
                 {isNameInputInvalid && (
                     <p className="error-text">Name must not be empty</p>
                 )}
             </div>
+            <div className={emailInputClasses}>
+                <label htmlFor="email">Your E-Mail</label>
+                <input
+                    type="email"
+                    id="email"
+                    onChange={emailInputChangeHandler}
+                    onBlur={emailInputBlurHandler}
+                    value={enteredEmail}
+                />
+                {isEnteredEmailInvalid && (
+                    <p className="error-text">Please enter a valid email.</p>
+                )}
+            </div>
             <div className="form-actions">
-                <button>Submit</button>
+                <button disabled={!isFormValid}>Submit</button>
             </div>
         </form>
     );
