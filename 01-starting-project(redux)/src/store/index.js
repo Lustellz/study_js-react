@@ -1,12 +1,12 @@
 // import { createStore  } from "redux";
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
-const initialState = { counter: 0, showCounter: true };
+const initialCounterState = { counter: 0, showCounter: true };
 
 const counterSlice = createSlice({
     // with using it, we can prepare using the slice of global state
     name: "counter",
-    initialState,
+    initialState: initialCounterState,
     reducers: {
         // all the reducers that this slice would use
         increment(state) {
@@ -16,7 +16,7 @@ const counterSlice = createSlice({
             state.counter--;
         },
         increase(state, action) {
-            state.counter += action.amount;
+            state.counter += action.payload; // the automatically created poperty's name is 'payload'
         },
         toggleCounter(state) {
             state.showCounter = !state.showCounter;
@@ -52,15 +52,36 @@ const counterSlice = createSlice({
 //     return state;
 // };
 
+const initialAuthState = {
+    isAuthenticated: false,
+};
+
+const authSlice = createSlice({
+    name: "auth",
+    initialState: initialAuthState,
+    reducers: {
+        logIn(state) {
+            state.isAuthenticated = true;
+        },
+        logOut(state) {
+            state.isAuthenticated = false;
+        },
+    },
+});
+
 const store =
     // createStore(
     configureStore(
+        // enable merging multiple stores(for we need to pass only one main store)
         {
-            reducer: counterSlice.reducer,
+            reducer: { counter: counterSlice.reducer, auth: authSlice.reducer }, // this would be automatically merged to one
             // {counter: counterSlice.reducer} // we can pass map for multiple reducers
         }
         // counterSlice.reducer
         // counterReducer
     ); //when multiple slices, we need to use combineReducers or configureStore
+
+export const counterActions = counterSlice.actions;
+export const authActions = authSlice.actions;
 
 export default store;

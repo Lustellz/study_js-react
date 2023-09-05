@@ -4,27 +4,28 @@ import {
     useSelector,
     useDispatch,
 } from "react-redux";
+import { counterActions } from "../store"; // redux tool-kit automatically create action objects
 import classes from "./Counter.module.css";
 
 const Counter = () => {
     const dispatch = useDispatch(); // this dispatch action against redux store
-    const counter = useSelector((state) => state.counter); // useSelector make sure the app always having the latest state
-    const show = useSelector((state) => state.showCounter);
+    const counter = useSelector((state) => state.counter.counter); // useSelector make sure the app always having the latest state
+    const show = useSelector((state) => state.counter.showCounter);
 
     const incrementHandler = () => {
-        dispatch({ type: "increment" });
+        dispatch(counterActions.increment());
     };
 
     const increaseHandler = () => {
-        dispatch({ type: "increase", amount: 5 }); // extra payload had been made
+        dispatch(counterActions.increase(5)); // extra payload had been made
     };
 
     const decrementHandler = () => {
-        dispatch({ type: "decrement" });
+        dispatch(counterActions.decrement());
     };
 
     const toggleCounterHandler = () => {
-        dispatch({ type: "toggle" });
+        dispatch(counterActions.toggleCounter());
     };
     return (
         <main className={classes.counter}>

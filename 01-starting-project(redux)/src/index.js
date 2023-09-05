@@ -11,4 +11,4 @@ root.render(
     <Provider store={store}>
         <App />
     </Provider>
-); // what does provide mean? (let the child components to access the store)
+); // Provider let the child components to access the store throughout the application
