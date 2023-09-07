@@ -4,7 +4,7 @@ import {
     useSelector,
     useDispatch,
 } from "react-redux";
-import { counterActions } from "../store"; // redux tool-kit automatically create action objects
+import { counterActions } from "../store/counter"; // redux tool-kit automatically create action objects
 import classes from "./Counter.module.css";
 
 const Counter = () => {
