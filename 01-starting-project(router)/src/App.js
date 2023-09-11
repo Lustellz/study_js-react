@@ -24,7 +24,8 @@ const router = createBrowserRouter([
         element: <RootLayout />, // it works as a wrapper of routes, which is path dependant
         errorElement: <ErrorPage />,
         children: [
-            { path: "", element: <HomePage /> }, // these should be relative paths (should not start with slash '/' to ensure not absolute)
+            { index: true, element: <HomePage /> }, // these should be relative paths (should not start with slash '/' to ensure not absolute)
+            // we can make default route as index page by using the proper option parameter
             { path: "products", element: <ProductsPage /> },
             { path: "products/:id", element: <ProductDetailPage /> }, // this segment gets dynamic
         ],
