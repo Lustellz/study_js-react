@@ -1,5 +1,12 @@
+// import { useNavigate } from "react-router-dom";
+import EventForm from "../components/EventForm";
+
 function NewEventPage() {
-    return <h1>NewEventPage</h1>;
+    // useNavigate()
+    // function submitHandler(event) {
+    //     event.preventDefault();
+    // }
+    return <EventForm />;
 }
 
 export default NewEventPage;
