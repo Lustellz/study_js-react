@@ -1,11 +1,1 @@
-{
-  "events": [
-    {
-      "id": "e1",
-      "title": "A dummy event",
-      "date": "2023-02-22",
-      "image": "https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg",
-      "description": "Join this amazing event and connect with fellow developers."
-    }
-  ]
-}
+{"events":[{"title":"Submitting test","image":"https://i.ytimg.com/vi/xojZrw27MHY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCXukZiAicpF8c6q727Pgl-vWlx2g","date":"2023-09-08","description":"test the result","id":"975c0e41-b782-4789-97a5-b81f4d3f8f88"},{"title":"A new Event","image":"https://i.ytimg.com/vi/xojZrw27MHY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCXukZiAicpF8c6q727Pgl-vWlx2g","date":"2023-09-13","description":"Coming Soon!","id":"8c18ad0b-16f5-4235-abf9-a4a4cb0596a5"},{"title":"Access","image":"https://img2.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202210/29/starnews/20221029232755079cxil.jpg","date":"2023-09-07","description":"test","id":"f53311c4-c9af-414f-b0b6-f7eae18b7977"},{"id":"e1","title":"A dummy event","date":"2023-02-22","image":"https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg","description":"Join this amazing event and connect with fellow developers."}]}

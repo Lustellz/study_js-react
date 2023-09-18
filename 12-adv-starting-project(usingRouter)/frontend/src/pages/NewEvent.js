@@ -6,7 +6,7 @@ function NewEventPage() {
     // function submitHandler(event) {
     //     event.preventDefault();
     // }
-    return <EventForm />;
+    return <EventForm method="post" />;
 }
 
 export default NewEventPage;
