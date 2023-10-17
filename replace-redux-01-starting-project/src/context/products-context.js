@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 export const ProductsContext = React.createContext({
     products: [],
+    toggleFav: (id) => {},
 });
 
 export default (props) => {
@@ -31,8 +32,23 @@ export default (props) => {
             isFavorite: false,
         },
     ]);
+
+    const toggleFavorite = (productId) => {
+        setProductsList((currProdList) => {
+            const prodIndex = currProdList.findIndex((p) => p.id === productId);
+            const newFavStatus = !currProdList[prodIndex].isFavorite;
+            const updatedProducts = [...currProdList];
+            updatedProducts[prodIndex] = {
+                ...currProdList[prodIndex],
+                isFavorite: newFavStatus,
+            };
+            return updatedProducts;
+        });
+    };
     return (
-        <ProductsContext.Provider value={{ products: productsList }}>
+        <ProductsContext.Provider
+            value={{ products: productsList, toggleFav: toggleFavorite }}
+        >
             {props.children}
         </ProductsContext.Provider>
     );
