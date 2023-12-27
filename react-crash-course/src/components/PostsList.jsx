@@ -1,20 +1,30 @@
-import NewPost from "./NewPost";
+import { useLoaderData } from "react-router-dom";
 import Post from "./Post";
 import classes from "./PostsList.module.css";
-import Modal from "./Modal";
 
-function PostsList({ isPosting, onStopPosting }) {
+function PostsList() {
+    const posts = useLoaderData();
+
     return (
         <>
-            {isPosting && (
-                <Modal onClose={onStopPosting}>
-                    <NewPost onCancel={onStopPosting} />
-                </Modal>
+            {posts.length > 0 && (
+                <ul className={classes.posts}>
+                    {posts.map((post) => (
+                        <Post
+                            id={post.id}
+                            key={post.id}
+                            author={post.author}
+                            body={post.body}
+                        />
+                    ))}
+                </ul>
             )}
-
-            <ul className={classes.posts}>
-                <Post author="Manuel" body="Check out the full course!" />
-            </ul>
+            {posts.length === 0 && (
+                <div style={{ textAlign: "center", color: "white" }}>
+                    <h2>There are no posts yet.</h2>
+                    <p>Start adding some!</p>
+                </div>
+            )}
         </>
     );
 }
